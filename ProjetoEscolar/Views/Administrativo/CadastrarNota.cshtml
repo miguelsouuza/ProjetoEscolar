@@ -1,0 +1,39 @@
+﻿@model ProjetoEscolar.Models.modelNota
+
+@{
+    ViewBag.Title = "Cadastrar";
+
+    List<string> TipoNotas = new List<string>();
+    TipoNotas.Add("MB");
+    TipoNotas.Add("B");
+    TipoNotas.Add("R");
+    TipoNotas.Add("I");
+}
+
+<h2>Cadastrar Dados</h2>
+
+@using (Html.BeginForm("CadastrarNota", "Administrativo", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label>Professores</label>
+    <br />
+    @Html.DropDownList("professor", "Escolha o Professor")
+    <br />
+    <label>Alunos</label>
+    <br />
+    @Html.DropDownList("aluno", "Escolha o Aluno")
+    <br />
+    <label>Disciplina</label>
+    <br />
+    @Html.DropDownList("disc", "Escolha a Disciplina")
+    <br />
+    <label>Notas</label>
+    <br />
+    @Html.DropDownListFor(m => m.Nota, new MultiSelectList(TipoNotas))
+    <br />
+    <br />
+    <input type="submit" value="Cadastrar" />
+    <br />
+    @ViewBag.Messagem
+}
+
+@Html.ActionLink("Voltar", "index", "Administrativo")
